@@ -181,18 +181,9 @@ def main(dataset_path: str) -> None:
     marginal_preference_matrix = calculate_marginal_preference_matrix(
         dataset, preference_information
     )
-
-    # compare filempm with marginal_preference_matrix
-    filempm = np.load("promethee_pl\\data\\lecture\\reference\\marginal_preference_matrix.npy")
-    assert np.array_equal(filempm, marginal_preference_matrix)
-
     comprehensive_preference_matrix = calculate_comprehensive_preference_index(
         marginal_preference_matrix, preference_information
     )
-
-    # compare filecpm with comprehensive_preference_matrix
-    filecpm = np.load("promethee_pl\\data\\lecture\\reference\\comprehensive_preference_matrix.npy")
-    assert np.array_equal(filecpm, comprehensive_preference_matrix)
 
     positive_flow = calculate_positive_flow(
         comprehensive_preference_matrix, dataset.index

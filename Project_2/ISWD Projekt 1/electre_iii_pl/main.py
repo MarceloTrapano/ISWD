@@ -353,34 +353,16 @@ def main(dataset_path: str) -> None:
     marginal_concordance_matrix = calculate_marginal_concordance_matrix(
         dataset, preference_information
     )
-
-    # compare filemcm with marginal_concordance_matrix
-    filemcm = np.load("electre_iii_pl\\data\\lecture\\reference\\marginal_concordance_matrix.npy")
-    assert np.array_equal(filemcm, marginal_concordance_matrix)
-
     comprehensive_concordance_matrix = calculate_comprehensive_concordance_matrix(
         marginal_concordance_matrix, preference_information
     )
 
-    # compare fileccm with comprehensive_concordance_matrix
-    fileccm = np.load("electre_iii_pl\\data\\lecture\\reference\\comprehensive_concordance_matrix.npy")
-    assert np.array_equal(fileccm, comprehensive_concordance_matrix)
-
     marginal_discordance_matrix = calculate_marginal_discordance_matrix(
         dataset, preference_information
     )
-
-    # compare filemdm with marginal_discordance_matrix
-    filemdm = np.load("electre_iii_pl\\data\\lecture\\reference\\marginal_discordance_matrix.npy")
-    assert np.array_equal(filemdm, marginal_discordance_matrix)
-
     credibility_index = calculate_credibility_index(
         comprehensive_concordance_matrix, marginal_discordance_matrix
     )
-
-    # compare fileci with credibility_index
-    fileci = np.load("electre_iii_pl\\data\\lecture\\reference\\credibility_index.npy")
-    assert np.array_equal(fileci, credibility_index)
 
     descending_ranking = descending_distillation(credibility_index, dataset.index)
     display_ranking(descending_ranking, "Descending Ranking") # -> problem z '\n' w nazwach nodów, cokolwiek innego działa; może u mnie wersja pygraphviz jest inna czy coś
