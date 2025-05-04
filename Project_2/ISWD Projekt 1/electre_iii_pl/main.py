@@ -147,7 +147,7 @@ def descending_distillation(
     1- if for the give pair [i, j] the alternative i is preferred over j or i is indifferent from j
     0- otherwise
     """
-    lambda_k=np.max(credibility_index)
+    lambda_k = np.max(credibility_index)
     descending_ranking = descending_distillation_start_lambda(lambda_k=lambda_k, credibility_index=credibility_index, alternatives=alternatives, alpha=alpha, beta=beta)
     descending_ranking = pd.DataFrame(descending_ranking, index=alternatives, columns=alternatives)
 

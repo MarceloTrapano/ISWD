@@ -1,0 +1,5 @@
+Criterion,q,p,k,type
+G1,5,15,4,gain
+G2,200,500,3,cost
+G3,100,300,1,gain
+G4,10,25,1,gain

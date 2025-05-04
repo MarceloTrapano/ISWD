@@ -54,7 +54,7 @@ def calculate_comprehensive_preference_index(
     :return: 2D numpy array with marginal preference matrix. Every entry in the matrix [i, j] represents comprehensive preference index between alternative i and alternative j
     """
     num_alternatives = marginal_preference_matrix.shape[0]
-    comprehensive_preference_matrix = np.zeros(shape= (num_alternatives, num_alternatives), dtype=np.float64)
+    comprehensive_preference_matrix = np.zeros(shape=(num_alternatives, num_alternatives), dtype=np.float64)
     ks = preference_information["k"].values
 
     for i, j in np.ndindex(num_alternatives, num_alternatives):
@@ -73,7 +73,7 @@ def calculate_positive_flow(
     """
     Function that calculates the positive flow value for the given preference matrix and corresponding index
 
-    :param comprehensive_preference_matrix: 2D numpy array with marginal preference matrix. Every entry in the matrix [i, j] represents comprehensive preference index between alternative i and alternative j
+    :param comprehensive_preference_matrix: 2D Donumpy array with marginal preference matrix. Every entry in the matrix [i, j] represents comprehensive preference index between alternative i and alternative j
     :param alternatives: index representing the alternative name in the corresponding position in preference matrix
     :return: series representing positive flow values for the given preference matrix
     """
