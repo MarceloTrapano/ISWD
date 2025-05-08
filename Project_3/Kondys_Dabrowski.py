@@ -2,7 +2,7 @@ import numpy as np
 from player import Player
 
 class Kondys_Dabrowski(Player):
-        """Gracz w oszusta, którego strategia opiera się o liczbę kart w ręce oraz o figurę karty przeciwnika. 
+    """Gracz w oszusta, którego strategia opiera się o liczbę kart w ręce oraz o figurę karty przeciwnika. 
     Macierz wypłat zmienia się w trakcie zadania przez, co dostosowywana jest taktyka pod nieznaną macierz wypłat.
     Gracz operuje na prawdopodobieństwach odnoszących się do wykonywania odpowiednich akcji. Strategią dominującą
     jest zagranie najniższej karty w momencie gdy możemy ją zagrać. Jeśli nasza najmniejsza karta ma figurę niższą
@@ -16,6 +16,7 @@ class Kondys_Dabrowski(Player):
         self.name: str = name
         self.cards: list[tuple[int, int]] = [] # edycja konstruktora klasy w celu pozbycia się komunikatów w IDE.
         self.seen: list[tuple[int, int]] = [] # dodanie tablicy z widzianymi kartami
+        self.all_cards_seen: bool = False # zmienna do sprawdzania czy wszystkie karty w grze zostały widziane
     def lowestCardDeclaired(self, declared_card: tuple[int, int]) -> tuple[int, int]:
         
         """Funkcja do wybierania karty o wartości najbliższej karcie zadeklarowanej.
@@ -63,6 +64,8 @@ class Kondys_Dabrowski(Player):
 
         self.seen.extend(self.cards)
         self.seen = list(set(self.seen)) # kompresja listy widzianych kart
+        if len(self.seen) == 16: # wszystkie karty w grze widziane
+            self.all_cards_seen = True
 
         # strategia zakładająca wystawianie wysokich kart w momencie, gdy mamy dużo kart
         if num_of_cards > 10:
@@ -119,6 +122,8 @@ class Kondys_Dabrowski(Player):
         prob: float = 0
         if opponent_declaration in self.cards: 
             return True # sprawdzenie czy zadeklarowana karta przeciwnika jest w twojej ręce
+        if opponent_declaration not in self.seen and self.all_cards_seen:
+            return True # zadeklarowanej karty nie ma w grze
         match opponent_declaration[0]: # wybór prawdopodobieństwa na bazie figury przeciwnika
             case 9:
                 prob = 0
