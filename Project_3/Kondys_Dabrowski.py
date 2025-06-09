@@ -2,7 +2,7 @@ import numpy as np
 from player import Player
 
 class Kondys_Dabrowski(Player):
-        """Gracz w oszusta, którego strategia opiera się o liczbę kart w ręce oraz o figurę karty przeciwnika. 
+    """Gracz w oszusta, którego strategia opiera się o liczbę kart w ręce oraz o figurę karty przeciwnika. 
     Macierz wypłat zmienia się w trakcie zadania przez, co dostosowywana jest taktyka pod nieznaną macierz wypłat.
     Gracz operuje na prawdopodobieństwach odnoszących się do wykonywania odpowiednich akcji. Strategią dominującą
     jest zagranie najniższej karty w momencie gdy możemy ją zagrać. Jeśli nasza najmniejsza karta ma figurę niższą
